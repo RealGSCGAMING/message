@@ -42,9 +42,11 @@ body {
 
 .paddedBody {
   font-size: 1em;
+  display: inline-block;
 }
 
-.paddedButton {
+.paddedButton,
+.smallButton {
   font-size: 1.25em;
   padding: 20px 40px;
   border-radius: 25px;
@@ -58,6 +60,38 @@ body {
   transition: transform 0.1s
 }
 
-.paddedButton:hover {
+.cardRow {
+  color: black;
+  font-size: 1em;
+  margin: 0;
+}
+
+.card {
+  display: inline-block;
+  transition: transform 0.5s;
+}
+
+.paddedButton:hover,
+.smallButton:hover {
   transform: scale(1.05);
+}
+
+.smallButton {
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  margin: 0;
+  display: inline-block;
+}
+
+.messageTitle,
+.messageTime {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.messageTime {
+  font-size: 1em
 }

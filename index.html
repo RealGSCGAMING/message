@@ -5,17 +5,21 @@
   <body>
     <div class="mainContent">
 
+      
       <!-- title section -->
       <div class="paddedBody">
         <div class="paddedTitle" id="textBox">send a message</div>
-        <div class="paddedBody" id="textBox">send a message to the future<br>this website uses browser cookies<br><span style="color: red;">clearing your cookies will delete all messages!</span></div>
+        <div class="paddedBody" id="textBox">you can send a message<br>this website uses browser cookies<br><span style="color: red;">clearing your cookies will delete all messages!</span></div>
       </div>
 
-      <!-- messages -->
-      <div class="paddedBody" id="messages">
-      </div>
-        
       
+      <!-- messages -->
+      <div class="paddedBody" id="messages" style="display:none;">
+        
+      </div>
+
+      
+      <!-- controls -->
       <div class="paddedBody">
         <input class="paddedBody" placeholder="input" style="text-align: center;" id="textInput"></input>
         <button class="paddedButton" id="sendButton">send</button>
@@ -23,7 +27,6 @@
       <button class="paddedButton" id="reloadButton">reload page</button>
         <button class="paddedButton" id="resetButton" style="background-color: red; display: none;">clear data</button>
       </div>
-    </div>
-    <script src="script.js"></script>
   </body>
+  <script src="script.js"></script>
 </html>
