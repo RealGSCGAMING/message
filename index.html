@@ -8,20 +8,57 @@
       
       <!-- title section -->
       <div class="paddedBody">
-        <div class="paddedTitle" id="textBox">send a message</div>
+        <div class="paddedTitle" id="textBox">cookies thing [WIP]</div>
         <div class="paddedBody" id="textBox">you can send a message<br>this website uses browser cookies<br><span style="color: red;">clearing your cookies will delete all messages!</span></div>
       </div>
 
       
       <!-- messages -->
       <div class="paddedBody" id="messages" style="display:none;">
-        
+        <div id="m1" class="paddedBody">
+          <p class="messageTitle" id="m1title">Placeholder 1</p><br>
+          <p class="messageTime" id="m1time">Opens in 1 second</p><br>
+          <button id="m1open" class="smallButton">
+            Open
+          </button>
+          <button id="m1delete" class="smallButton" style="background-color:red;">
+            Delete
+          </button>
+        </div>
+        <div id="m2" class="paddedBody" style="display:none;">
+          <p class="messageTitle" id="m2title">Placeholder 2</p><br>
+          <p class="messageTime" id="m2time">Opens in 1 second</p><br>
+          <button id="m2open" class="smallButton">
+            Open
+          </button>
+          <button id="m2delete" class="smallButton" style="background-color:red;">
+            Delete
+          </button>
+        </div>
+        <div id="m3" class="paddedBody" style="display:none;">
+          <p class="messageTitle" id="m3title">Placeholder 3</p><br>
+          <p class="messageTime" id="m3time">Opens in 1 second</p><br>
+          <button id="m3open" class="smallButton" style="enabled:false;">
+            Open
+          </button>
+          <button id="m3delete" class="smallButton" style="background-color:red;">
+            Delete
+          </button>
+        </div>
       </div>
 
       
       <!-- controls -->
       <div class="paddedBody">
-        <input class="paddedBody" placeholder="input" style="text-align: center;" id="textInput"></input>
+        
+        <input class="paddedBody" placeholder="title" style="text-align: center; width: 200px;" id="titleInput"></input>
+        
+        <input class="paddedBody" placeholder="message" style="text-align: center;" id="textInput"></input>
+        
+        <input class="paddedBody" style="text-align: center;" id="timeInput" type="datetime-local"></input>
+        
+        <input class="paddedBody" style="text-align: center;" id="colorInput" type="color"></input>
+        
         <button class="paddedButton" id="sendButton">send</button>
       </div>
       <button class="paddedButton" id="reloadButton">reload page</button>
