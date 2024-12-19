@@ -74,6 +74,7 @@ function brighterColor(color) {
   return rgbToHex(brighterR, brighterG, brighterB);
 }
 
+// placeholders
 {
   inputbox.addEventListener("click", function() {
     if (inputbox.innerHTML == "message content") {
@@ -102,6 +103,7 @@ function loadMessages() {
 
   if (getCookie("m3title") != null) {
     createMessageDiv(3, getCookie("m3title"), getCookie("m3time"));
+    m3.style = "display: block;";
   }
 
   messagebox.style = "display: block;";
