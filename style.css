@@ -25,7 +25,8 @@ body {
 }
 
 .paddedTitle,
-.paddedBody {
+.paddedBody,
+.messageView {
   padding: 20px 40px;
   border-radius: 25px;
   background-color: white;
@@ -94,4 +95,13 @@ body {
 
 .messageTime {
   font-size: 1em
+}
+
+.messageView {
+  width: 25%;
+  min-height: 50%;
+}
+
+.controlsBox {
+  max-width: 50%;
 }
