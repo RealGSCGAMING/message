@@ -24,10 +24,12 @@ const m1time = document.getElementById("m1time");
 const m2 = document.getElementById("m2");
 const m2title = document.getElementById("m2title");
 const m2button = document.getElementById("m2open");
+const m2delete = document.getElementById("m2delete");
 const m2time = document.getElementById("m2time");
 const m3 = document.getElementById("m3");
 const m3title = document.getElementById("m3title");
 const m3button = document.getElementById("m3open");
+const m3delete = document.getElementById("m3delete");
 const m3time = document.getElementById("m3time");
 
 // utilities
@@ -76,19 +78,18 @@ function brighterColor(color) {
 
 // placeholders
 {
-  inputbox.addEventListener("click", function() {
+  inputbox.addEventListener("click", function () {
     if (inputbox.innerHTML == "message content") {
-      inputbox.innerHTML = ""
+      inputbox.innerHTML = "";
     }
-  })
+  });
 
-  titlebox.addEventListener("click", function() {
+  titlebox.addEventListener("click", function () {
     if (titlebox.innerHTML == "message title") {
-      titlebox.innerHTML = ""
+      titlebox.innerHTML = "";
     }
-  })
+  });
 }
-  
 
 // message functions
 
@@ -141,19 +142,33 @@ function createMessageDiv(number, title, time) {
   date = time.split("T")[0];
   time = time.split("T")[1];
 
+  dateData = date.split("-");
+  timeData = time.split(":");
+  hour = timeData[0];
+
+  if (hour > 12) {
+    hour = hour - 12;
+    timeData[0] = hour;
+    timeData[2] = "PM";
+  } else {
+    timeData[2] = "AM";
+  }
+
+  timeText = `Opens on ${dateData[1]}-${dateData[2]}-${dateData[0]} at ${timeData[0]}:${timeData[1]} ${timeData[2]}`;
+
   if (number == 1) {
     m1title.innerHTML = title;
-    m1time.innerHTML = `Opens on ${date} at ${time}`;
+    m1time.innerHTML = timeText;
   }
 
   if (number == 2) {
     m2title.innerHTML = title;
-    m2time.innerHTML = `Opens on ${date} at ${time}`;
+    m2time.innerHTML = timeText;
   }
 
   if (number == 3) {
     m3title.innerHTML = title;
-    m3time.innerHTML = `Opens on ${date} at ${time}`;
+    m3time.innerHTML = timeText;
   }
 }
 
@@ -189,10 +204,76 @@ function deleteMessage(number) {
   }
 }
 
+function checkIfOpen(number) {
+  currentDate = new Date();
+  var day = String(currentDate.getDate()).padStart(2, "0");
+  var month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  var year = currentDate.getFullYear();
+  var hour = String(currentDate.getHours()).padStart(2, "0");
+  var minute = String(currentDate.getMinutes()).padStart(2, "0");
+
+  if (number == 1) {
+    messageDate = getCookie("m1time").split("T")[0];
+    messageTime = getCookie("m1time").split("T")[1];
+  }
+
+  if (number == 2) {
+    messageDate = getCookie("m2time").split("T")[0];
+    messageTime = getCookie("m2time").split("T")[1];
+  }
+
+  if (number == 3) {
+    messageDate = getCookie("m3time").split("T")[0];
+    messageTime = getCookie("m3time").split("T")[1];
+  }
+
+  dateData = messageDate.split("-");
+  timeData = messageTime.split(":");
+  hour = timeData[0];
+
+  if (dateData[0] < year) {
+    return true;
+  }
+  if (dateData[0] == year) {
+    
+    if (dateData[1] < month) {
+      return true;
+    }
+    if (dateData[1] == month) {
+      
+      if (dateData[2] < day) {
+        return true;
+      }
+      if (dateData[2] == day) {
+        
+        if (timeData[0] < hour) {
+          return true;
+        }
+        if (timeData[0] == hour) {
+          
+          if (timeData[1] < minute) {
+            return true;
+          }
+          if (timeData[1] == minute) {
+            
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
 function openMessage(number) {
+  if (!checkIfOpen(number)) {
+    alert("you can't open this message yet");
+    return;
+  }
 
   messageView.style = "display: block; position: fixed; right: 35%; top: 25%";
-  
+
   if (number == 1) {
     messageTitleView.innerHTML = getCookie("m1title");
     messageTextView.innerHTML = getCookie("m1text");
@@ -221,11 +302,9 @@ resetButton.addEventListener("click", function () {
   clearCookies();
 });
 
-messageClose.addEventListener("click", function() {
+messageClose.addEventListener("click", function () {
   messageView.style = "display: none;";
-})
-
-
+});
 
 if (
   getCookie("m1title") != null ||
