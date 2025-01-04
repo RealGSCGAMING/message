@@ -29,7 +29,7 @@ body {
 .messageView {
   padding: 20px 40px;
   border-radius: 25px;
-  background-color: white;
+  background-color: #92a2e2;
   color: black;
   border: 2px solid black;
   margin-top: 10px;
@@ -39,6 +39,7 @@ body {
 
 .paddedTitle {
   font-size: 2em;
+  background-color: #5a77ed;
 }
 
 .paddedBody {
@@ -51,7 +52,7 @@ body {
   font-size: 1.25em;
   padding: 20px 40px;
   border-radius: 25px;
-  background-color: white;
+  background-color: #feb248;
   color: black;
   border: 2px solid black;
   cursor: pointer;
@@ -104,4 +105,14 @@ body {
 
 .controlsBox {
   max-width: 50%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 100%;
+  }
 }
