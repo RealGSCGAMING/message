@@ -1,6 +1,10 @@
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>leave a message</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="/scroll.png" />
   </head>
   <body>
     
@@ -8,16 +12,18 @@
       
       <!-- title section -->
       <div class="paddedBody">
-        <div class="paddedTitle" id="textBox">cookies thing [WIP]</div>
-        <div class="paddedBody" id="textBox">you can send a message<br>this website uses browser cookies<br><span style="color: red;">clearing your cookies will delete all messages!</span></div>
+        <div class="paddedTitle" id="textBox">leave a message</div>
+        <div class="paddedBody" id="textBox">send a message and read it later<br>this website uses browser cookies<br><span style="color: red;">clearing your cookies will delete all messages!</span></div>
       </div>
+
+      <button class="paddedButton" id="tutorialButton">tutorial</button>
 
       <!-- messages -->
       <div class="paddedBody" id="messages" style="display:none;">
         
         <div id="m1" class="paddedBody">
           <p class="messageTitle" id="m1title">Placeholder 1</p><br>
-          <p class="messageTime" id="m1time">Opens in 1 second</p><br>
+          <p class="messageTime" id="m1time">Opens in NaN</p><br>
           <button id="m1open" class="smallButton">
             Open
           </button>
@@ -27,7 +33,7 @@
         </div>
         <div id="m2" class="paddedBody" style="display:none;">
           <p class="messageTitle" id="m2title">Placeholder 2</p><br>
-          <p class="messageTime" id="m2time">Opens in 1 second</p><br>
+          <p class="messageTime" id="m2time">Opens in NaN</p><br>
           <button id="m2open" class="smallButton">
             Open
           </button>
@@ -37,7 +43,7 @@
         </div>
         <div id="m3" class="paddedBody" style="display:none;">
           <p class="messageTitle" id="m3title">Placeholder 3</p><br>
-          <p class="messageTime" id="m3time">Opens in 1 second</p><br>
+          <p class="messageTime" id="m3time">Opens in NaN</p><br>
           <button id="m3open" class="smallButton" style="enabled:false;">
             Open
           </button>
@@ -73,6 +79,11 @@
         <button class="paddedButton" id="sendButton">send</button>
         
       </div>
+
+      <button class="paddedButton" id="tutorialButton2" style="display: none;">tutorial</button>
+
+      <button class="paddedButton" id="refreshButton">refresh messages</button>
+      
       <button class="paddedButton" id="reloadButton">reload page</button>
       
       <button class="paddedButton" id="resetButton" style="background-color: red; display: none;">clear data</button>

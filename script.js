@@ -6,6 +6,9 @@ const titlebox = document.getElementById("titleInput");
 const sendButton = document.getElementById("sendButton");
 const resetButton = document.getElementById("resetButton");
 const reloadButton = document.getElementById("reloadButton");
+const tutorialButton = document.getElementById("tutorialButton");
+const tutorialButton2 = document.getElementById("tutorialButton2");
+const refreshButton = document.getElementById("refreshButton");
 const textbox = document.getElementById("textBox");
 const messagebox = document.getElementById("messages");
 const messageView = document.getElementById("messageView");
@@ -53,6 +56,11 @@ function getCookie(name) {
 }
 
 function clearCookies() {
+
+  if (!confirm("are you sure you want to delete ALL MESSAGES?")) {
+    return
+  }
+  
   document.cookie.split(";").forEach((cookie) => {
     setCookie(cookie, 0, -1);
   });
@@ -91,6 +99,8 @@ function brighterColor(color) {
   });
 }
 
+tutorial = false
+
 // message functions
 
 function loadMessages() {
@@ -108,6 +118,8 @@ function loadMessages() {
   }
 
   messagebox.style = "display: block;";
+  tutorialButton.style = "display: none;"
+  tutorialButton2.style = "display: block;"
 }
 
 function addMessage(title, msg, time) {
@@ -173,6 +185,11 @@ function createMessageDiv(number, title, time) {
 }
 
 function deleteMessage(number) {
+
+  if (!confirm("are you sure you want to delete this message?")) {
+    return
+  }
+  
   if (number == 1) {
     setCookie("m1title", "", -1);
     setCookie("m1text", "", -1);
@@ -294,6 +311,79 @@ sendButton.addEventListener("click", function () {
   addMessage(titlebox.innerHTML, inputbox.innerHTML, timebox.value);
 });
 
+function showTutorial() {
+  messageView.style = "display: block; position: fixed; right: %; top: -1%; width: 75%;";
+  messageTitleView.innerHTML = "Tutorial"
+  messageTextView.innerHTML = `
+  <h2>Creating messages</h2>
+  Type your message title in the first box and your text in the second box. Enter the date that the message will open in the third box. Then, click the <b>Send</b> button.
+  <h2>Using messages</h2>
+  When a message can be opened, click the <b>Open</b> button to view it. You can also delete them by clicking the <b>Delete</b> button.
+  <h2>Refreshing messages</h2>
+  Due to browser limitations, the website requires you to return once every year and reset your cookie. To do this, click the <b>Refresh Messages</b> button. 
+  <h2>Deleting data</h2>
+  To delete your data for this website, click the <b>Clear Data</b> button. You can also manually delete the cookie through your browser settings.
+  <h2>Thank you for visiting!</h2>
+  `
+}
+
+function refreshMessages() {
+  var rfchecked
+  if (getCookie("m1title") != null) {
+    rftitle = getCookie("m1title");
+    rftext = getCookie("m1text");
+    rftime = getCookie("m1time");
+    setCookie("m1title", rftitle, 365);
+    setCookie("m1text", rftext, 365);
+    setCookie("m1time", rftime, 365);
+    loadMessages();
+    rfchecked = true
+  }
+  
+  if (getCookie("m2title") != null) {
+    rftitle = getCookie("m2title");
+    rftext = getCookie("m2text");
+    rftime = getCookie("m2time");
+    setCookie("m2title", rftitle, 365);
+    setCookie("m2text", rftext, 365);
+    setCookie("m2time", rftime, 365);
+    loadMessages();
+    rfchecked = true
+  }
+
+  if (getCookie("m3title") != null) {
+    rftitle = getCookie("m3title");
+    rftext = getCookie("m3text");
+    rftime = getCookie("m3time");
+    setCookie("m3title", rftitle, 365);
+    setCookie("m3text", rftext, 365);
+    setCookie("m3time", rftime, 365);
+    loadMessages();
+    rfchecked = true
+  }
+
+  if (rfchecked) {
+    alert("messages refreshed successfully. make sure to refresh them at least once a year!")
+  }
+  else {
+    alert("found no messages to refresh")
+  }
+  
+}
+
+tutorialButton.addEventListener("click", function() {
+  showTutorial()
+  tutorial = true
+})
+
+tutorialButton2.addEventListener("click", function() {
+  showTutorial()
+})
+
+refreshButton.addEventListener("click", function() {
+  refreshMessages();
+})
+
 reloadButton.addEventListener("click", function () {
   location.reload();
 });
@@ -304,6 +394,13 @@ resetButton.addEventListener("click", function () {
 
 messageClose.addEventListener("click", function () {
   messageView.style = "display: none;";
+
+  if (tutorial == true) {
+    tutorial = false
+    tutorialButton.style = "display: none;"
+    tutorialButton2.style = "display: block;"
+    tutorialButton = tutorialButton2
+  }
 });
 
 if (
@@ -313,6 +410,8 @@ if (
 ) {
   resetButton.style = "background-color: red; display: block;";
   loadMessages();
+  tutorialButton.style = "display: none;"
+  tutorialButton2.style = "display: block;"
 }
 
 // delete buttons
